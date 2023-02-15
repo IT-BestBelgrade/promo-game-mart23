@@ -25,21 +25,21 @@ class User {
     }
 
     // public static function returnUser($usrid, mysqli $conn) {
-    //     $query = "SELECT * FROM korisnik WHERE id = '$usrid'";
+    //     $query = "SELECT * FROM user WHERE id = '$usrid'";
     //     $rez = $conn->query($query);
     //     // return mysqli_fetch_assoc($rez)['maxid'];
     //     return $rez->fetch_assoc();
     // }
 
     public static function returnName($id, mysqli $conn) {
-        $query = "SELECT name as nm FROM korisnik WHERE id = '$id'";
+        $query = "SELECT name as nm FROM user WHERE id = '$id'";
         $rez = $conn->query($query);
         // return mysqli_fetch_assoc($rez)['maxid'];
         return $rez->fetch_assoc()['nm'];
     }
 
     public static function returnScore($id, mysqli $conn) {
-        $query = "SELECT score as scr FROM korisnik WHERE id = '$id'";
+        $query = "SELECT score as scr FROM user WHERE id = '$id'";
         $rez = $conn->query($query);
         // return mysqli_fetch_assoc($rez)['maxid'];
         return $rez->fetch_assoc()['scr'];
@@ -52,7 +52,7 @@ class User {
         echo "stari:"; echo $lastScore;
         // exit();
         if ($score > $lastScore) {
-            $query = "UPDATE korisnik SET score='$score' WHERE id='$id'";
+            $query = "UPDATE user SET score='$score' WHERE id='$id'";
             $rez = $conn->query($query);
             return;
         }
