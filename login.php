@@ -1,32 +1,54 @@
 <?php
-
+    
 require "dbBroker.php";
 require "user.php";
 
-
+// session_destroy();
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+if(isset($_POST['email']) && isset($_POST['name'])){
+    $uemail = $_POST['email'];
+    $uname = $_POST['name'];
+
+    $korisnik = new User(null, $uemail, $uname);
+
+    // $odg = $korisnik->loginUser($korisnik, $conn);
+    $odg = User::loginUser($korisnik, $conn); //pristup statickim funkcijama preko klasa
+    
+    if ($odg->num_rows==1){  //email vec postoji u bazi
+        $kor = $odg->fetch_assoc();
+        echo "postoji user";
+
+        if ($kor['name'] == $uname) {  //user postoji u bazi
+            $_SESSION['user_id'] = $kor['id'];
+            header('Location: index.php');
+            exit();
+
+        } else {  //nije unet isti email i name
+            echo "NISTE UNELI DOBRE PODATKE";
+
+            $_SESSION['pogresan_name'] = "pogresan name";
+            $_SESSION['pogresan_email'] = $kor['email'];
+            header('Location: index.php');
+            exit();
+        }
+
+    } else if ($odg->num_rows==0){   //novi user
+        User::loginNewUser($korisnik, $conn);
+        
+        $odg2 = User::loginUser($korisnik, $conn); 
+        $_SESSION['user_id'] = $odg2->fetch_assoc()['id'];
+        header('Location: index.php');
+        exit();
+
+    } else{
+        echo `<script>console.log( "Neuspesna prijava");</script>`;
+        // $korisnik = null;
+        exit();
+    }
 }
 
-if (isset($_SESSION['user_id']) && isset($_POST["submit"]) && $_POST["submit"]=="logout") {
-    echo "Uspesna odjava";
-
-    session_destroy();
-    header('Location: login.php');
-    exit();
-} 
-
-$user_id = $_SESSION['user_id'];
-
-$user_name = User::returnName($user_id, $conn);
-$user_score = User::returnScore($user_id, $conn);
-
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -35,54 +57,43 @@ $user_score = User::returnScore($user_id, $conn);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zmijica</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>AIBG Promo Game</title>
 
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="css/button.css"> -->
+    <!-- <link rel="stylesheet" href="css/drugi.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <div class="bestica">
-    <h1>BESTica</h1>
-    <p class="tekst"><b>Tvoj BEST rezultat:</b> <b><?php echo $user_score?></b>!</p>
-    <canvas id="board"></canvas>
-    <h2>Score: <span id="score"> 0</span></h2>
+
+    <div class="header">
+        <img src="images/best_logo1.png" alt="BEST Logo" class="logo" width=100 >
     </div>
 
-    <form method="POST" action="#">
-            <button type="submit" name="submit" value="logout" class="btn btn-logout">Odjavi se</button>
-    </form>
+    
+    <!-- <img src="images/pozadina.jpg" alt="" class="background"> -->
 
-
-    <!-- restart i logout container -->
-    <div class="container hide" data-restart>
-        <p class="rezultat">Tvoj rezultat je: <b><span id="score-end">0</span></b></p>
-
-        <button class="btn btn-restart" data-restart-btn>Restart</button>
-        
+    <div class="login-form">
         <form method="POST" action="#">
-            <button type="submit" name="submit" value="logout" class="btn btn-logout">Odjavi se</button>
-        </form>
 
-        <div class="saznajvise">
-            <p style="font-size: 15px;">Saznaj više</p> 
-            <div class="vise">
-            <a href="https://best.rs/" target="_blank"><button class="btn btn-small">O BEST-u</button></a>
+            <div class="container">
+                <label for="email" class="lbl">Email</label>
+                <input type="email" name="email" id="email" class="inpt" required>
+                <br>
+                <label for="neme" class="lbl">Instagram</label>
+                <input type="text" name="name" id="name" class="inpt" value="@">
+                <p class="fusnota" style="font-size:13px; font: weight 500px;">
+                    Ako nemate Instagram, unesite nadimak.<br>
+                    <!-- <i>Zapamtite vase podatke :)</i> -->
+                </p>
+                <br>
+                <button type="submit" name="submit" value="login" class="btn btn-login">Prijavi se</button>
             </div>
-        </div>
 
-        <!-- <a href="scoreboard.php" target="_blank"><button class="btn">Scoreboard</button></a> -->
+        </form>
     </div>
 
-
-    <div class="buttons">
-        <button id="up" class="btn">UP</button>
-        <div style="display:flex; flex-direction:row; justify-content:center;">
-            <button id="left" class="btn">LEFT</button>
-            <button id="right" class="btn">RIGHT</button>
-        </div>
-        <button id="down" class="btn">DOWN</button>
-    </div>
-
+    
 </body>
 </html>
