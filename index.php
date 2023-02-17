@@ -90,27 +90,6 @@ $user_score = User::returnScore($user_id, $conn);
 
 
 
-    <!-- restart i logout container -->
-    <div class="container hide" data-restart>
-        <p class="rezultat">Tvoj rezultat je: <b><span id="score-end">0</span></b></p>
-
-        <!-- <button class="button btn-restart" data-restart-btn>Restart</button> -->
-        
-        <!-- <form method="POST" action="#">
-            <button type="submit" name="submit" value="logout" class="button btn-logout">Odjavi se</button>
-        </form> -->
-
-        <!-- <div class="saznajvise">
-            <p style="font-size: 15px;">Saznaj više</p> 
-            <div class="vise">
-            <a href="https://best.rs/" target="_blank"><button class="button btn-small">O BEST-u</button></a>
-            </div>
-        </div> -->
-
-        <!-- <a href="scoreboard.php" target="_blank"><button class="button">Scoreboard</button></a> -->
-    </div>
-
-
     <script src="script.js"></script>
 
 </body>

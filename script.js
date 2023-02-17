@@ -15,7 +15,15 @@ const bestlogo = new Image();
 bestlogo.src = "images/best_logo1.png";
 
 //board
-var blockSize = 20;
+
+if (window.matchMedia("(max-width: 487px)").matches){
+  var blockSize=15;
+  console.log("smanjeno");
+}else{
+  var blockSize = 20;
+  console.log("nije smanjeno");
+}
+
 var rows = 18;
 var cols = 22;
 var context;
@@ -101,7 +109,7 @@ function update() {
     0,
     2 * Math.PI
   );
-  context.fillStyle = "orange";
+  context.fillStyle = "#69cd28";
   context.fill();
 
   //SUPERFOOD

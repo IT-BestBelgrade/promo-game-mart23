@@ -39,8 +39,10 @@
 </head>
 <body>
 
-    <div class="header">
-        <img src="img/logo-white.png" alt="AIBG Logo" class="logo">
+    <div class="header" style="justify-content:space-between">
+       <img src="images/best_logo_standard.png" alt="BEST Logo" class="logo">
+       <h1>BESTica</h1>
+        <img src="images/best_logo_white.png" alt="BEST Logo" class="logo">
     </div>
 
     
@@ -54,12 +56,12 @@
                 <input type="email" name="email" id="email" class="inpt" required> -->
                 
                 <p class="tekst">
-                    Uneli ste pogrešan Instagram za email: <i style="color:white;"><?php echo $mejl; ?></i><br>
+                    Uneli ste pogrešan Instagram za email: <i style="color:#faa519;"><?php echo $mejl; ?></i><br>
                     <br>
-                    Ako imate neki problem u vezi prijave, obratite se na email <i style="color:white;">it@best.rs</i>
+                    Ako imate neki problem u vezi sa prijavom, obratite se na email <i style="color:white;">it@best.rs</i>
                 </p>
                 <br>
-                <button type="submit" name="submit" value="again" class="btn btn-again">Pokušajte opet</button>
+                <button type="submit" name="submit" value="again" class="button btn-again">Pokušajte opet</button>
             </div>
 
         </form>

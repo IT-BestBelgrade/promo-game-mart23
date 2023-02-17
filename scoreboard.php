@@ -37,17 +37,17 @@ if ($rezultat->num_rows == 0) {
 </head>
 <body>
 
-    <div class="header">
-        <img src="images/best_logo_standard.png" alt="BEST Logo" class="logo">
-        <h1>BESTica</h1>
-
+    <div class="header" style="justify-content:space-between">
+       <img src="images/best_logo_standard.png" alt="BEST Logo" class="logo">
+       <h1>BESTica</h1>
+        <img src="images/best_logo_white.png" alt="BEST Logo" class="logo">
     </div>
 
     <!-- <img src="img/pozadina.png" alt="" class="background"> -->
 
     <div class="cont-tabela">
 
-        <h2 style="color:#33bca5; margin-top:-30px;">SCOREBOARD</h2>
+        <h2 style="color:#faa519; margin-top:-30px;">SCOREBOARD</h2>
 
         <table class="tabela">
             <thead>

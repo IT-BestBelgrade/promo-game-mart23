@@ -4,7 +4,7 @@ body {
   text-align: center;
   /* background-color: aquamarine; */
   background-image: url("images/pozadina1.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
   /* background-color: #ccc; */
 
@@ -19,15 +19,14 @@ body {
   flex-direction: row;
   top: 0;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #fff;
-  color: #191f2b;
+  color: #1973be;
   height: 70px;
   width: 100%;
 }
 
 .logo {
-  margin: 0 50px;
   height: 60px;
 }
 
@@ -44,6 +43,7 @@ body {
 }
 
 .console {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,6 +51,8 @@ body {
   padding: 50px 10px;
   border-radius: 75px;
   border: 0.5px solid #000;
+  margin-bottom: 20px;
+  
 }
 
 .screen {
@@ -83,7 +85,7 @@ body {
   font-size: 22px;
   font-weight: bold;
   color: #191f2b;
-  background-color: orange;
+  background-color: #faa519;
   border: 0.5px solid #000;
   border-radius: 5px;
   z-index: 999;
@@ -92,7 +94,7 @@ body {
 .btn-nista {
   width: 50px;
   /* height: 40px; */
-  background-color: orange;
+  background-color: #faa519;
   border: none;
   border-radius: 1px;
   margin: 0;
@@ -128,7 +130,7 @@ body {
   font-size: 15px;
   font-weight: bold;
   color: #191f2b;
-  background-color: orange;
+  background-color: #faa519;
   border: 0.5px solid #000;
   border-radius: 5px;
   width: 130px;
@@ -151,16 +153,17 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #121212dd;
-  width: 800px;
+  background-color: #ffffff60;
+  width: 500px;
   height: 500px;
+  margin-top: 5%;
 
   position: absolute;
   z-index: 999;
 }
 
 .tabela th {
-  color: #33bca5;
+  color: #faa519;
 }
 
 .tabela tr {
@@ -170,19 +173,19 @@ body {
 .tbl-rang {
   width: 80px;
   text-align: center;
-  border-bottom: solid 1px #33bca5;
+  border-bottom: solid 1px #faa519;
 }
 
 .tbl-name {
   width: 250px;
   padding: 0 10px;
-  border-bottom: solid 1px #33bca5;
+  border-bottom: solid 1px #faa519;
 }
 
 .tbl-score {
   width: 100px;
   text-align: center;
-  border-bottom: solid 1px #33bca5;
+  border-bottom: solid 1px #faa519;
 }
 
 /* HIDE */
@@ -196,3 +199,84 @@ body {
     display: none;
   }
 } */
+
+@media only screen and (max-width: 850px) {
+  /* apply this style for tablet screens */
+  .console {
+    flex-direction: column;
+    padding: 10px 50px;
+  }
+  .screen{
+    margin: 20px
+  }
+
+  .button{
+    margin:2px;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .console{
+    padding: 10px 10px;
+  }
+}
+
+@media only screen and (max-width: 550px){
+  .console{
+    padding: 10px 1px;
+  }
+
+  .screen{
+    margin-left: 1px;
+    margin-right: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+  .container{
+    width: 250px;
+    height: 200px;
+  }
+
+  .cont-tabela{
+    font-size: 16px;
+    width: 300px;
+
+  }
+
+  .tabela tr {
+    height: 22px;
+  }
+  
+  .tbl-rang {
+    width: 50px;
+  }
+  
+  .tbl-name {
+    width: 200px;
+  }
+  
+  .tbl-score {
+    width: 75px;
+  }
+
+  .header{
+    height: 55px;
+    font-size: small;  
+  }
+  .logo{
+    height: 45px;
+  }
+
+  .btn-logout{
+    width: 90px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+}
+
+
+.tekst{
+  font-size: small;
+}

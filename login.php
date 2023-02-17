@@ -67,9 +67,11 @@ if(isset($_POST['email']) && isset($_POST['name'])){
 </head>
 <body>
 
-    <div class="header">
+    <div class="header" style="justify-content:space-between">
         <img src="images/best_logo_standard.png" alt="BEST Logo" class="logo">
         <h1>BESTica</h1>
+        <img src="images/best_logo_white.png" alt="BEST Logo" class="logo">
+
     </div>
 
     
