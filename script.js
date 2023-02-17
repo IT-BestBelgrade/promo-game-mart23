@@ -15,53 +15,65 @@ const bestlogo = new Image();
 bestlogo.src = "images/best_logo1.png";
 
 //board
-
-if (window.matchMedia("(max-width: 487px)").matches){
-  var blockSize=15;
+let blockSize;
+if (window.matchMedia("(max-width: 487px)").matches) {
+  blockSize = 15;
   console.log("smanjeno");
-}else{
-  var blockSize = 20;
+} else {
+  blockSize = 20;
   console.log("nije smanjeno");
 }
 
-var rows = 18;
-var cols = 22;
-var context;
+let rows = 18;
+let cols = 22;
+let context;
 
 //snake
-var snakeX = blockSize * 5;
-var snakeY = blockSize * 5;
+let snakeX = blockSize * 5;
+let snakeY = blockSize * 5;
 
-var velocityX = 0;
-var velocityY = 0;
+let velocityX = 0;
+let velocityY = 0;
 
-var snakeBody = [];
+let snakeBody = [];
 
-var snakeSpeed = 200;
+let snakeSpeed = 200;
 
 //food
-var foodX;
-var foodY;
+let foodX;
+let foodY;
 
-var superFoodX = -50;
-var superFoodY = -50;
+let superFoodX = -50;
+let superFoodY = -50;
 
 //game
-var gameOver = false;
-var score = 0;
-var foodEaten = 0;
+let gameOver = false;
+let score = 0;
+let foodEaten = 0;
 
 restartBtn.addEventListener("click", () => {
+  velocityX = 0;
+  velocityY = 0;
+  snakeX = blockSize * 5;
+  snakeY = blockSize * 5;
+  snakeBody = [];
+  snakeSpeed = 200;
+
   gameOver = false;
   score = 0;
   foodEaten = 0;
+
+  placeFood();
+  superFoodX = -50;
+  superFoodY = -50;
+
   scoreElement.innerText = "" + score;
   restartElem.classList.add("hide");
-
-  update();
 });
 
-window.onload = function () {
+window.addEventListener("load", loadFunction);
+
+function loadFunction() {
   // restartElem = document.querySelector("[data-restart]");
   // console.log(restartElem);
 
@@ -87,7 +99,9 @@ window.onload = function () {
 
   update();
   //100 milliseconds
-};
+}
+
+function start() {}
 
 function update() {
   if (gameOver) {
@@ -191,6 +205,7 @@ function lose() {
   console.log("kraj");
   console.log(score);
   writeScore();
+  snakeSpeed = 200;
 
   scoreEndElement.innerText = "" + score;
   restartElem.classList.remove("hide");
@@ -215,7 +230,7 @@ function changeDirection(e) {
 
 //kretanje na dugmice
 function changeDirectionBtn(btn) {
-  console.log(btn);
+  // console.log(btn);
   if (btn == 2 && velocityY != 1) {
     velocityX = 0;
     velocityY = -1;

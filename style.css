@@ -52,7 +52,6 @@ body {
   border-radius: 75px;
   border: 0.5px solid #000;
   margin-bottom: 20px;
-  
 }
 
 .screen {
@@ -142,6 +141,12 @@ body {
   color: #fff;
 }
 
+.inpt {
+  font-size: 13px;
+  width: 175px;
+  height: 20px;
+}
+
 /* SCOREBOARD */
 .cont-tabela {
   display: flex;
@@ -206,77 +211,74 @@ body {
     flex-direction: column;
     padding: 10px 50px;
   }
-  .screen{
-    margin: 20px
+  .screen {
+    margin: 20px;
   }
 
-  .button{
-    margin:2px;
+  .button {
+    margin: 2px;
   }
 }
 
-@media only screen and (max-width: 767px){
-  .console{
+@media only screen and (max-width: 767px) {
+  .console {
     padding: 10px 10px;
   }
 }
 
-@media only screen and (max-width: 550px){
-  .console{
+@media only screen and (max-width: 550px) {
+  .console {
     padding: 10px 1px;
   }
 
-  .screen{
+  .screen {
     margin-left: 1px;
     margin-right: 1px;
     padding-left: 1px;
     padding-right: 1px;
   }
 
-  .container{
+  .container {
     width: 250px;
     height: 200px;
   }
 
-  .cont-tabela{
+  .cont-tabela {
     font-size: 16px;
     width: 300px;
-
   }
 
   .tabela tr {
     height: 22px;
   }
-  
+
   .tbl-rang {
     width: 50px;
   }
-  
+
   .tbl-name {
     width: 200px;
   }
-  
+
   .tbl-score {
     width: 75px;
   }
 
-  .header{
+  .header {
     height: 55px;
-    font-size: small;  
+    font-size: small;
   }
-  .logo{
+  .logo {
     height: 45px;
   }
 
-  .btn-logout{
+  .btn-logout {
     width: 90px;
     height: 30px;
     font-size: 13px;
   }
-
 }
 
-
-.tekst{
+.tekst {
   font-size: small;
 }
