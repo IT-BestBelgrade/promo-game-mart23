@@ -57,6 +57,27 @@ class User {
             return;
         }
     }
+
+    public static function maxScore(mysqli $conn) {
+        $query = "SELECT MAX(score) as maxscr FROM user";
+        $rez = $conn->query($query);
+        return $rez->fetch_assoc()['maxscr'];
+    }
+
+    public static function maxUser(mysqli $conn) {
+        $maxscore = User::maxScore($conn);
+        $query = "SELECT * FROM user WHERE score='$maxscore'";
+        $rez = $conn->query($query);
+        return $rez->fetch_assoc();
+    }
+
+
+    public static function getAll(mysqli $conn) {
+        $query = "SELECT * FROM user ORDER BY score DESC";
+
+        $rez = $conn->query($query);
+        return $rez;
+    }
     
 
 }

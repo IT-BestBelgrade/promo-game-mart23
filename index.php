@@ -35,54 +35,83 @@ $user_score = User::returnScore($user_id, $conn);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zmijica</title>
-    <script src="script.js"></script>
+    <title>BESTica</title>
+    
+    <link rel="shortcut icon" href="images/best_logo1.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
-    <div class="bestica">
-    <h1>BESTica</h1>
-    <p class="tekst"><b>Tvoj BEST rezultat:</b> <b><?php echo $user_score?></b>!</p>
-    <canvas id="board"></canvas>
-    <h2>Score: <span id="score"> 0</span></h2>
+    <div class="header">
+        <img src="images/best_logo_standard.png" alt="BEST Logo" class="logo">
+        <h1>BESTica</h1>
+        <form method="POST" action="#">
+            <button type="submit" name="submit" value="logout" class="button btn-logout">Odjavi se</button>
+        </form>
     </div>
 
-    <form method="POST" action="#">
-            <button type="submit" name="submit" value="logout" class="btn btn-logout">Odjavi se</button>
-    </form>
+    <div class="space"></div>
+
+    <div class="game">
+        <div class="console">
+            <div class="console-btns">
+                <button class="button btn-restart" data-restart-btn>Restart</button>
+                <a href="scoreboard.php" target="_blank"><button class="button">Scoreboard</button></a>
+                <div class="saznajvise">
+                    <p style="font-size:15px; font-weight:bold;">Saznaj više</p>
+                    <a href="https://best.rs/" target="_blank"><button class="button btn-small">O BEST-u</button></a>
+                </div>
+            </div>
+
+            <div class="screen">
+                <p class="tekst"><b>Your BEST score:</b> <b><?php echo $user_score?></b></p>
+                <canvas id="board"></canvas>
+                <h3 class="tekst">Score: <span id="score"> 0</span></h3>
+            </div>
+
+            <div class="container hide" data-restart>
+                <h3>GAME OVER!</h3>
+                <p class="rezultat">Your score: <b><span id="score-end">0</span></b></p>
+            </div>
+
+            <div class="console-btns">
+                <button id="up" class="btn"><i class='fas fa-caret-up'></i></button>
+                <div style="display:flex; flex-direction:row; justify-content:center;">
+                    <button id="left" class="btn"><i class='fas fa-caret-left'></i></button>
+                    <button class="btn-nista"></button>
+                    <button id="right" class="btn"><i class='fas fa-caret-right'></i></button>
+                </div>
+                <button id="down" class="btn"><i class='fas fa-caret-down'></i></button>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <!-- restart i logout container -->
     <div class="container hide" data-restart>
         <p class="rezultat">Tvoj rezultat je: <b><span id="score-end">0</span></b></p>
 
-        <button class="btn btn-restart" data-restart-btn>Restart</button>
+        <!-- <button class="button btn-restart" data-restart-btn>Restart</button> -->
         
-        <form method="POST" action="#">
-            <button type="submit" name="submit" value="logout" class="btn btn-logout">Odjavi se</button>
-        </form>
+        <!-- <form method="POST" action="#">
+            <button type="submit" name="submit" value="logout" class="button btn-logout">Odjavi se</button>
+        </form> -->
 
-        <div class="saznajvise">
+        <!-- <div class="saznajvise">
             <p style="font-size: 15px;">Saznaj više</p> 
             <div class="vise">
-            <a href="https://best.rs/" target="_blank"><button class="btn btn-small">O BEST-u</button></a>
+            <a href="https://best.rs/" target="_blank"><button class="button btn-small">O BEST-u</button></a>
             </div>
-        </div>
+        </div> -->
 
-        <!-- <a href="scoreboard.php" target="_blank"><button class="btn">Scoreboard</button></a> -->
+        <!-- <a href="scoreboard.php" target="_blank"><button class="button">Scoreboard</button></a> -->
     </div>
 
 
-    <div class="buttons">
-        <button id="up" class="btn">UP</button>
-        <div style="display:flex; flex-direction:row; justify-content:center;">
-            <button id="left" class="btn">LEFT</button>
-            <button id="right" class="btn">RIGHT</button>
-        </div>
-        <button id="down" class="btn">DOWN</button>
-    </div>
+    <script src="script.js"></script>
 
 </body>
 </html>

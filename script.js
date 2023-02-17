@@ -1,11 +1,26 @@
+const board = document.getElementById("board");
+
+const scoreElement = document.getElementById("score");
+const scoreEndElement = document.getElementById("score-end");
+const restartElem = document.querySelector("[data-restart]");
+const restartBtn = document.querySelector("[data-restart-btn]");
+
+const up = document.getElementById("up");
+const down = document.getElementById("down");
+const left = document.getElementById("left");
+const right = document.getElementById("right");
+
+//images
+const bestlogo = new Image();
+bestlogo.src = "images/best_logo1.png";
+
 //board
-var blockSize = 22;
-var rows = 22;
+var blockSize = 20;
+var rows = 18;
 var cols = 22;
-var board;
 var context;
 
-//snake head
+//snake
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
 
@@ -23,57 +38,44 @@ var foodY;
 var superFoodX = -50;
 var superFoodY = -50;
 
+//game
 var gameOver = false;
 var score = 0;
 var foodEaten = 0;
 
-var scoreElement;
-var scoreEndElement;
+restartBtn.addEventListener("click", () => {
+  gameOver = false;
+  score = 0;
+  foodEaten = 0;
+  scoreElement.innerText = "" + score;
+  restartElem.classList.add("hide");
 
-var bestlogo = new Image();
-bestlogo.src = "images/best_logo1.png";
-
-var restartElem;
-
-var up;
-var down;
-var left;
-var right;
+  update();
+});
 
 window.onload = function () {
-  restartElem = document.querySelector("[data-restart]");
-  console.log(restartElem);
+  // restartElem = document.querySelector("[data-restart]");
+  // console.log(restartElem);
 
-  up = document.getElementById("up");
-  up.addEventListener("click", () => {
-    changeDirectionBtn(2);
-  });
-
-  down = document.getElementById("down");
-  down.addEventListener("click", () => {
-    changeDirectionBtn(8);
-  });
-  left = document.getElementById("left");
-  left.addEventListener("click", () => {
-    changeDirectionBtn(4);
-  });
-  right = document.getElementById("right");
-  right.addEventListener("click", () => {
-    changeDirectionBtn(6);
-  });
-
-  board = document.getElementById("board");
   board.height = rows * blockSize;
   board.width = cols * blockSize;
   context = board.getContext("2d"); //used for drawing on the board
 
-  scoreElement = document.getElementById("score");
-  scoreEndElement = document.getElementById("score-end");
-
-  console.log(scoreElement.innerHTML);
-
   placeFood();
   document.addEventListener("keyup", changeDirection);
+
+  up.addEventListener("click", () => {
+    changeDirectionBtn(2);
+  });
+  down.addEventListener("click", () => {
+    changeDirectionBtn(8);
+  });
+  left.addEventListener("click", () => {
+    changeDirectionBtn(4);
+  });
+  right.addEventListener("click", () => {
+    changeDirectionBtn(6);
+  });
 
   update();
   //100 milliseconds
@@ -84,9 +86,11 @@ function update() {
     return;
   }
 
+  //BORDER
   context.fillStyle = "black";
   context.fillRect(0, 0, board.width, board.height);
 
+  //FOOD
   //context.fillStyle="red";
   //context.fillRect(foodX, foodY, blockSize, blockSize);
   context.beginPath();
@@ -100,6 +104,7 @@ function update() {
   context.fillStyle = "orange";
   context.fill();
 
+  //SUPERFOOD
   context.drawImage(
     bestlogo,
     superFoodX,
@@ -108,6 +113,7 @@ function update() {
     blockSize * 2
   );
 
+  //pojede food
   if (snakeX == foodX && snakeY == foodY) {
     snakeBody.push([foodX, foodY]);
     foodEaten++;
@@ -117,6 +123,7 @@ function update() {
     scoreElement.innerText = "" + score;
     console.log(snakeSpeed);
   }
+  //pojede superfood
   if (
     (snakeX == superFoodX || snakeX == superFoodX + blockSize) &&
     (snakeY == superFoodY || snakeY == superFoodY + blockSize)
@@ -128,6 +135,7 @@ function update() {
     superFoodY = -50;
   }
 
+  //kretanje
   for (let i = snakeBody.length - 1; i > 0; i--) {
     snakeBody[i] = snakeBody[i - 1];
   }
@@ -135,6 +143,7 @@ function update() {
     snakeBody[0] = [snakeX, snakeY];
   }
 
+  //ZMIJICA
   context.fillStyle = "#fff";
   snakeX += velocityX * blockSize;
   snakeY += velocityY * blockSize;
@@ -144,7 +153,7 @@ function update() {
     context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
   }
 
-  //game over conditions
+  //prelazak na drugu stranu
   if (snakeX < 0) {
     snakeX = blockSize * (cols - 1);
   } else if (snakeX > (cols - 1) * blockSize) {
@@ -155,6 +164,7 @@ function update() {
     snakeY = 0;
   }
 
+  //GAME OVER
   for (let i = 0; i < snakeBody.length; i++) {
     if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
       //   gameOver = true;
@@ -162,6 +172,7 @@ function update() {
       lose();
     }
   }
+
   setTimeout(update, snakeSpeed);
 }
 
@@ -177,6 +188,7 @@ function lose() {
   restartElem.classList.remove("hide");
 }
 
+//kretanje na tastaturi
 function changeDirection(e) {
   if (e.code == "ArrowUp" && velocityY != 1) {
     velocityX = 0;
@@ -193,6 +205,7 @@ function changeDirection(e) {
   }
 }
 
+//kretanje na dugmice
 function changeDirectionBtn(btn) {
   console.log(btn);
   if (btn == 2 && velocityY != 1) {

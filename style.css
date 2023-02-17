@@ -1,23 +1,105 @@
 body {
+  margin: 0;
   font-family: "Courier New", Courier, monospace;
   text-align: center;
   /* background-color: aquamarine; */
-  background-image: url("images/pozadina2.jpg");
+  background-image: url("images/pozadina1.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #ccc;
+  /* background-color: #ccc; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.bestica {
-  position: relative;
+.header {
+  /* position: absolute; */
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  color: #191f2b;
+  height: 70px;
+  width: 100%;
+}
+
+.logo {
+  margin: 0 50px;
+  height: 60px;
+}
+
+.space {
+  height: 50px;
+}
+
+/* GAME CONSOLE */
+.game {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-items: center;
-  color: #fff;
 }
 
+.console {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #33bca5;
+  padding: 50px 10px;
+  border-radius: 75px;
+  border: 0.5px solid #000;
+}
+
+.screen {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: black;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+#board {
+  border: #fff solid 1px;
+}
+
+.tekst {
+  margin: 5px;
+  padding: 0;
+}
+
+.console-btns {
+  width: 180px;
+  height: auto;
+  /* background-color: aqua; */
+}
+
+.btn {
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #191f2b;
+  background-color: orange;
+  border: 0.5px solid #000;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+.btn-nista {
+  width: 50px;
+  /* height: 40px; */
+  background-color: orange;
+  border: none;
+  border-radius: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+/* CONTAINERS */
 .container {
   display: flex;
   flex-direction: column;
@@ -33,36 +115,84 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 322px;
-  height: 322px;
+  width: 350px;
+  height: 300px;
 
   position: absolute;
   z-index: 999;
 }
 
-.btn {
+/* BUTTONS */
+.button {
   margin: 10px;
-  background-color: #fff;
-  color: #121212;
-  font-size: 14px;
-  font-weight: 600;
-  border: solid 2px #fff;
-  border-radius: 2px;
-  width: 100px;
-  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #191f2b;
+  background-color: orange;
+  border: 0.5px solid #000;
+  border-radius: 5px;
+  width: 130px;
+  height: 40px;
   transition: 0.7s ease;
 }
-.btn:hover {
-  background-color: #121212e3;
+.button:hover {
+  background-color: #191f2b;
   color: #fff;
 }
 
+/* SCOREBOARD */
+.cont-tabela {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #121212dd;
+  width: 800px;
+  height: 500px;
+
+  position: absolute;
+  z-index: 999;
+}
+
+.tabela th {
+  color: #33bca5;
+}
+
+.tabela tr {
+  height: 30px;
+}
+
+.tbl-rang {
+  width: 80px;
+  text-align: center;
+  border-bottom: solid 1px #33bca5;
+}
+
+.tbl-name {
+  width: 250px;
+  padding: 0 10px;
+  border-bottom: solid 1px #33bca5;
+}
+
+.tbl-score {
+  width: 100px;
+  text-align: center;
+  border-bottom: solid 1px #33bca5;
+}
+
+/* HIDE */
 .hide {
   display: none;
 }
 
-@media only screen and (min-width: 800px) {
-  .buttons {
+/* DUGMICI NA KOMPU */
+/* @media only screen and (min-width: 800px) {
+  .console-btns {
     display: none;
   }
-}
+} */

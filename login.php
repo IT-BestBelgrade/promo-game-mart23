@@ -29,7 +29,7 @@ if(isset($_POST['email']) && isset($_POST['name'])){
 
             $_SESSION['pogresan_name'] = "pogresan name";
             $_SESSION['pogresan_email'] = $kor['email'];
-            header('Location: index.php');
+            header('Location: pogresanLogin.php');
             exit();
         }
 
@@ -57,9 +57,9 @@ if(isset($_POST['email']) && isset($_POST['name'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIBG Promo Game</title>
+    <title>BESTica</title>
 
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/best_logo1.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="css/button.css"> -->
     <!-- <link rel="stylesheet" href="css/drugi.css"> -->
@@ -68,7 +68,8 @@ if(isset($_POST['email']) && isset($_POST['name'])){
 <body>
 
     <div class="header">
-        <img src="images/best_logo1.png" alt="BEST Logo" class="logo" width=100 >
+        <img src="images/best_logo_standard.png" alt="BEST Logo" class="logo">
+        <h1>BESTica</h1>
     </div>
 
     
@@ -88,7 +89,7 @@ if(isset($_POST['email']) && isset($_POST['name'])){
                     <!-- <i>Zapamtite vase podatke :)</i> -->
                 </p>
                 <br>
-                <button type="submit" name="submit" value="login" class="btn btn-login">Prijavi se</button>
+                <button type="submit" name="submit" value="login" class="button btn-login">Prijavi se</button>
             </div>
 
         </form>
